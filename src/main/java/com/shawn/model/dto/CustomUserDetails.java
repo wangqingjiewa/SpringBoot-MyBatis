@@ -26,22 +26,57 @@ public class CustomUserDetails extends User implements UserDetails {
     private final boolean accountNonExpired;
     private final boolean credentialsNonExpired;
     private final boolean accountNonLocked;
-    private final Set<GrantedAuthority> authorities;
+//    private final Set<GrantedAuthority> authorities;
 
     public CustomUserDetails(User user, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
         if (user != null
-                && !StringUtils.isBlank(user.getUsername())
-                && !StringUtils.isBlank(user.getPassword())) {
-            setUsername(user.getUsername());
-            setPassword(user.getPassword());
+//                && !StringUtils.isBlank(user.g.getUsername())
+//                && !StringUtils.isBlank(user.getPassword())
+            ) {
+//            setUsername(user.getUsername());
+//            setPassword(user.getPassword());
             this.enabled = enabled;
             this.accountNonExpired = accountNonExpired;
             this.credentialsNonExpired = credentialsNonExpired;
             this.accountNonLocked = accountNonLocked;
-            this.authorities = Collections.unmodifiableSet(new HashSet<>(CollectionUtils.emptyIfNull(authorities)));
+//            this.authorities = Collections.unmodifiableSet(new HashSet<>(CollectionUtils.emptyIfNull(authorities)));
         } else {
             throw new IllegalArgumentException("Cannot pass null or empty values to constructor");
         }
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 }
